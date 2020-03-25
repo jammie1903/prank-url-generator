@@ -33,11 +33,20 @@ app.get('/', async (req, res) => {
   render(app, context, res)
 })
 
+function clean(obj) {
+  return Object.keys(obj).reduce((acc, key) => {
+    if(obj[key]) {
+      acc[key] = obj[key]
+    }
+    return acc
+  }, {})
+}
+
 app.post('/create', async (req, res) => {
   var fullUrl = req.protocol + '://' + req.get('host')
   const metadata = await createMetadata(req.body)
   const {title, description, image, siteName, favicon, themeColor, type, domain} = metadata
-  const params = new URLSearchParams({title, description, image, siteName, favicon, themeColor, type, domain}).toString()
+  const params = new URLSearchParams(clean({title, description, image, siteName, favicon, themeColor, type, domain})).toString()
   const generatedUrl = fullUrl + '/view?' + params
 
   TinyURL.shorten(generatedUrl, function(url, err) {
