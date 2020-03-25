@@ -1,0 +1,19 @@
+<div>
+  <h1>Prank Url Maker</h1>
+  <p>
+    This is a site to help create a fake link with metadata to send to a friend (or enemy!).<br/>
+    Simply fill in the details below to create your link.
+
+    <form method="POST" action="/create">
+      <label for="domain">Domain</label>
+      <input type="url" name="domain" id="domain">
+      <small>This will be the site that the link appears to be from. It will also provide default metadata e.g. description</small>
+      <br/>
+      <label for="title">Title</label>
+      <input name="title" id="title" class="full-width" placeholder="{Prepopulated from domain}">
+      <label for="description">Description</label>
+      <textarea name="description" id="description" rows="2" placeholder="{Prepopulated from domain}"></textarea>
+      <button type="submit" id="switch">Create Link</button>
+    </form>
+  </p>
+</div>
