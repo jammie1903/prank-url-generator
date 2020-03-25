@@ -24,10 +24,10 @@ async function createMetadata(data) {
 app.get('/', async (req, res) => {
   const app = Main()
 
-  const metadata = await createMetadata({
+  const metadata = {
     title: 'Prank Url Maker',
     description: 'This is a site to help create a fake link with metadata to send to a friend (or enemy!).'
-  })
+  }
   const context = createContext(metadata)
 
   render(app, context, res)
@@ -36,8 +36,8 @@ app.get('/', async (req, res) => {
 app.post('/create', async (req, res) => {
   var fullUrl = req.protocol + '://' + req.get('host')
   const metadata = await createMetadata(req.body)
-  const {title, description, image, siteName, favicon, themeColor, type} = metadata
-  const params = new URLSearchParams({title, description, image, siteName, favicon, themeColor, type}).toString()
+  const {title, description, image, siteName, favicon, themeColor, type, domain} = metadata
+  const params = new URLSearchParams({title, description, image, siteName, favicon, themeColor, type, domain}).toString()
   const generatedUrl = fullUrl + '/view?' + params
 
   TinyURL.shorten(generatedUrl, function(url, err) {

@@ -9,6 +9,11 @@ module.exports = function createPage ({generatedUrl}) {
     template,
     data: {
       generatedUrl
+    },
+    methods: {
+      copyLink: () => {
+        console.log('hello')
+      }
     }
   })
 }

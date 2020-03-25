@@ -4,11 +4,12 @@ const {
   siteNameMetadata,
   faviconMetadata,
   themeColorMetadata,
-  typeMetadata
+  typeMetadata,
+  urlMetadata
 } = require('./metadata')
 
 function createContext(metadata) {
-  const {title, description, image, siteName, favicon, themeColor, type} = metadata
+  const {title, description, image, siteName, favicon, themeColor, type, domain} = metadata
 
   return {
     title: title || siteName || 'Title',
@@ -18,7 +19,8 @@ function createContext(metadata) {
       siteNameMetadata(siteName),
       faviconMetadata(favicon),
       themeColorMetadata(themeColor),
-      typeMetadata(type)
+      typeMetadata(type),
+      urlMetadata(domain)
     ].join('')
   }
 }

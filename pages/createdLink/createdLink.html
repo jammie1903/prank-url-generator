@@ -5,6 +5,20 @@
     Copy your link from below
 
     <label for="url">Url</label>
-    <input type="url" name="url" id="url" readonly :value="generatedUrl">
+    <div class="row">
+      <input type="url" name="url" id="url" readonly :value="generatedUrl">
+      <button type="button" id="copy">Copy</button>
+      <a href='/'>Create a new link</a>
+    </div>
   </p>
+  <script>
+    domready(function () {
+      document.getElementById('copy').addEventListener('click', function () {
+        var copyText = document.getElementById('url');
+        copyText.setSelectionRange(0, copyText.value.length);
+        if(copyText.select) copyText.select();
+        document.execCommand('copy');
+      })
+    })
+  </script>
 </div>
